@@ -24,8 +24,18 @@ class ListBooks extends Component {
   }
 
   onChange(ev, t) {
-    let selectedook = t.state.books.find(book => book.title === ev.target.parentNode.parentNode.nextSibling.innerHTML)
-    selectedook.shelf = ev.target.value
+    let selectedTitle = ev.target.parentNode.parentNode.nextSibling.innerHTML
+    let targetValue = ev.target.value
+    if(targetValue !== "none")
+    {
+      let selectedook = t.state.books.find(book => book.title === selectedTitle)
+      selectedook.shelf = targetValue
+    } else {
+      t.state.books = t.state.books.filter((el) => {
+        if(el.title !== selectedTitle)
+          return el
+      })
+    }
     t.setState(t.state.books)
   }
 

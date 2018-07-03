@@ -23,8 +23,13 @@ class ListBooks extends Component {
     })
   }
 
+  onChange(ev, t) {
+    let selectedook = t.state.books.find(book => book.title === ev.target.parentNode.parentNode.nextSibling.innerHTML)
+    selectedook.shelf = ev.target.value
+    t.setState(t.state.books)
+  }
+
   render() {
-    getAll().then((list) => {console.log(list)})
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -44,12 +49,12 @@ class ListBooks extends Component {
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
                               <div className="book-shelf-changer">
-                                <select>
-                                  <option value="move" disabled>Move to...</option>
+                                <select onChange={(e) => this.onChange(e, this)}>
+                                  <option value="move" disabled>&emsp;Move to...</option>
                                   <option value="currentlyReading">✔ Currently Reading</option>
-                                  <option value="wantToRead">Want to Read</option>
-                                  <option value="read">Read</option>
-                                  <option value="none">None</option>
+                                  <option value="wantToRead">&emsp;Want to Read</option>
+                                  <option value="read">&emsp;Read</option>
+                                  <option value="none">&emsp;None</option>
                                 </select>
                               </div>
                             </div>
@@ -77,12 +82,12 @@ class ListBooks extends Component {
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
                               <div className="book-shelf-changer">
-                                <select>
-                                  <option value="move" disabled>Move to...</option>
-                                  <option value="currentlyReading">Currently Reading</option>
+                                <select defaultValue="wantToRead" onChange={(e) => this.onChange(e, this)}>
+                                  <option value="move" disabled>&emsp;Move to...</option>
+                                  <option value="currentlyReading">&emsp;Currently Reading</option>
                                   <option value="wantToRead">✔ Want to Read</option>
-                                  <option value="read">Read</option>
-                                  <option value="none">None</option>
+                                  <option value="read">&emsp;Read</option>
+                                  <option value="none">&emsp;None</option>
                                 </select>
                               </div>
                             </div>
@@ -110,12 +115,12 @@ class ListBooks extends Component {
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
                               <div className="book-shelf-changer">
-                                <select>
-                                  <option value="move" disabled>Move to...</option>
-                                  <option value="currentlyReading">Currently Reading</option>
-                                  <option value="wantToRead">Want to Read</option>
+                                <select defaultValue="read" onChange={(e) => this.onChange(e, this)}>
+                                  <option value="move" disabled>&emsp;Move to...</option>
+                                  <option value="currentlyReading">&emsp;Currently Reading</option>
+                                  <option value="wantToRead">&emsp;Want to Read</option>
                                   <option value="read">✔ Read</option>
-                                  <option value="none">None</option>
+                                  <option value="none">&emsp;None</option>
                                 </select>
                               </div>
                             </div>

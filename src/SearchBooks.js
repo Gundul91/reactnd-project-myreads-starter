@@ -11,14 +11,7 @@ class SearchBooks extends Component {
   onChange(ev, t) {
     search(ev.target.value).then((list) => {
       t.setState({
-        books: list.map((book) => {
-          return {
-            title: book.title,
-            authors: book.authors,
-            image: book.imageLinks.thumbnail,
-            shelf: book.shelf
-          }
-        })
+        books: list
       })
     })
   }
@@ -95,7 +88,7 @@ class SearchBooks extends Component {
                 <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
                   <div className="book">
                     <div className="book-top">
-                      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
+                      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                       <div className="book-shelf-changer">
                         {this.switchFunction(book)}
                       </div>

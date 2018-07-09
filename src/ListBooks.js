@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { getAll } from './BooksAPI.js'
+import { update } from './BooksAPI.js'
 
 class ListBooks extends Component {
 
@@ -11,14 +12,7 @@ class ListBooks extends Component {
   componentDidMount() {
     getAll().then((list) => {
       this.setState({
-        books: list.map((book) => {
-          return {
-            title: book.title,
-            authors: book.authors,
-            image: book.imageLinks.thumbnail,
-            shelf: book.shelf
-          }
-        })
+        books: list
       })
     })
   }
@@ -26,16 +20,9 @@ class ListBooks extends Component {
   onChange(ev, t) {
     let selectedTitle = ev.target.parentNode.parentNode.nextSibling.innerHTML
     let targetValue = ev.target.value
-    if(targetValue !== "none")
-    {
-      let selectedook = t.state.books.find(book => book.title === selectedTitle)
-      selectedook.shelf = targetValue
-    } else {
-      t.state.books = t.state.books.filter((el) => {
-        if(el.title !== selectedTitle)
-          return el
-      })
-    }
+    let selectedbook = t.state.books.find(book => book.title === selectedTitle)
+    selectedbook.shelf = targetValue
+    update(selectedbook, targetValue)
     t.setState(t.state.books)
   }
 
@@ -58,7 +45,7 @@ class ListBooks extends Component {
                         <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
                           <div className="book">
                             <div className="book-top">
-                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
+                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                               <div className="book-shelf-changer">
                                 <select onChange={(e) => this.onChange(e, this)}>
                                   <option value="move" disabled>&emsp;Move to...</option>
@@ -91,7 +78,7 @@ class ListBooks extends Component {
                         <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
                           <div className="book">
                             <div className="book-top">
-                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
+                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                               <div className="book-shelf-changer">
                                 <select defaultValue="wantToRead" onChange={(e) => this.onChange(e, this)}>
                                   <option value="move" disabled>&emsp;Move to...</option>
@@ -124,7 +111,7 @@ class ListBooks extends Component {
                         <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
                           <div className="book">
                             <div className="book-top">
-                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.image})` }}></div>
+                              <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                               <div className="book-shelf-changer">
                                 <select defaultValue="read" onChange={(e) => this.onChange(e, this)}>
                                   <option value="move" disabled>&emsp;Move to...</option>

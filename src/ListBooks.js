@@ -14,6 +14,9 @@ class ListBooks extends Component {
       this.setState({
         books: list
       })
+      list.forEach((el) => {
+        shelfList[el.id] = el.shelf
+      })
     })
   }
 
@@ -26,8 +29,11 @@ class ListBooks extends Component {
     t.setState(t.state.books)
   }
 
+  getList() {
+    return this.state.books
+  }
+
   render() {
-    console.log(this.state.books)
     return (
       <div className="list-books">
         <div className="list-books-title">
@@ -42,7 +48,7 @@ class ListBooks extends Component {
                   {this.state.books.map((book) => {
                     if(book.shelf === "currentlyReading") {
                       return (
-                        <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
+                        <li key={book.id}>
                           <div className="book">
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -75,7 +81,7 @@ class ListBooks extends Component {
                   {this.state.books.map((book) => {
                     if(book.shelf === "wantToRead") {
                       return (
-                        <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
+                        <li key={book.id}>
                           <div className="book">
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -108,7 +114,7 @@ class ListBooks extends Component {
                   {this.state.books.map((book) => {
                     if(book.shelf === "read") {
                       return (
-                        <li key={book.title + ((book.authors) ? book.authors.join(", ") : "")}>
+                        <li key={book.id}>
                           <div className="book">
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -144,4 +150,5 @@ class ListBooks extends Component {
   }
  }
 
+export let shelfList = {}
 export default ListBooks

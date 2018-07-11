@@ -101,7 +101,7 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.books.error === undefined && this.state.books.map((book) => {
+            {this.state.books!== undefined && this.state.books.error === undefined && this.state.books.map((book) => {
               return (
                 <li key={ book.id }>
                   <div className="book">

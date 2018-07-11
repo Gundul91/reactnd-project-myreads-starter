@@ -30,52 +30,50 @@ class SearchBooks extends Component {
   }
 
   switchFunction(book) {
-      switch(shelfList[book.id]) {
-        case "currentlyReading":
-          return (
-            <select onChange={(e) => this.onChange(e, this)}>
-              <option value="move" disabled>&emsp;Move to...</option>
-              <option value="currentlyReading">✔ Currently Reading</option>
-              <option value="wantToRead">&emsp;Want to Read</option>
-              <option value="read">&emsp;Read</option>
-              <option value="none">&emsp;None</option>
-            </select>
-          )
-        case "wantToRead":
-          return (<select defaultValue="wantToRead" onChange={(e) => this.onChange(e, this)}>
+    switch(shelfList[book.id]) {
+      case "currentlyReading":
+        return (
+          <select onChange={(e) => this.onChange(e, this)}>
             <option value="move" disabled>&emsp;Move to...</option>
-            <option value="currentlyReading">&emsp;Currently Reading</option>
-            <option value="wantToRead">✔ Want to Read</option>
+            <option value="currentlyReading">✔ Currently Reading</option>
+            <option value="wantToRead">&emsp;Want to Read</option>
             <option value="read">&emsp;Read</option>
             <option value="none">&emsp;None</option>
-          </select>)
-        case "read":
-          return (<select defaultValue="read" onChange={(e) => this.onChange(e, this)}>
-            <option value="move" disabled>&emsp;Move to...</option>
-            <option value="currentlyReading">&emsp;Currently Reading</option>
-            <option value="wantToRead">&emsp;Want to Read</option>
-            <option value="read">✔ Read</option>
-            <option value="none">&emsp;None</option>
-          </select>)
-        case "none":
-          return (<select defaultValue="none" onChange={(e) => this.onChange(e, this)}>
-            <option value="move" disabled>&emsp;Move to...</option>
-            <option value="currentlyReading">&emsp;Currently Reading</option>
-            <option value="wantToRead">&emsp;Want to Read</option>
-            <option value="read">&emsp;Read</option>
-            <option value="none">✔ None</option>
-          </select>)
-        case undefined:
-          return (<select defaultValue="none" onChange={(e) => this.onChange(e, this)}>
-            <option value="move" disabled>&emsp;Move to...</option>
-            <option value="currentlyReading">&emsp;Currently Reading</option>
-            <option value="wantToRead">&emsp;Want to Read</option>
-            <option value="read">&emsp;Read</option>
-            <option value="none">✔ None</option>
-          </select>)
-        }
-    //console.log(ListBooks.state.books.find((el) => el.title === book.title))
-
+          </select>
+        )
+      case "wantToRead":
+        return (<select defaultValue="wantToRead" onChange={(e) => this.onChange(e, this)}>
+          <option value="move" disabled>&emsp;Move to...</option>
+          <option value="currentlyReading">&emsp;Currently Reading</option>
+          <option value="wantToRead">✔ Want to Read</option>
+          <option value="read">&emsp;Read</option>
+          <option value="none">&emsp;None</option>
+        </select>)
+      case "read":
+        return (<select defaultValue="read" onChange={(e) => this.onChange(e, this)}>
+          <option value="move" disabled>&emsp;Move to...</option>
+          <option value="currentlyReading">&emsp;Currently Reading</option>
+          <option value="wantToRead">&emsp;Want to Read</option>
+          <option value="read">✔ Read</option>
+          <option value="none">&emsp;None</option>
+        </select>)
+      case "none":
+        return (<select defaultValue="none" onChange={(e) => this.onChange(e, this)}>
+          <option value="move" disabled>&emsp;Move to...</option>
+          <option value="currentlyReading">&emsp;Currently Reading</option>
+          <option value="wantToRead">&emsp;Want to Read</option>
+          <option value="read">&emsp;Read</option>
+          <option value="none">✔ None</option>
+        </select>)
+      case undefined:
+        return (<select defaultValue="none" onChange={(e) => this.onChange(e, this)}>
+          <option value="move" disabled>&emsp;Move to...</option>
+          <option value="currentlyReading">&emsp;Currently Reading</option>
+          <option value="wantToRead">&emsp;Want to Read</option>
+          <option value="read">&emsp;Read</option>
+          <option value="none">✔ None</option>
+        </select>)
+    }
   }
 
   render() {
@@ -100,7 +98,7 @@ class SearchBooks extends Component {
           <ol className="books-grid">
             {this.state.books.error === undefined && this.state.books.map((book) => {
               return (
-                <li key={book.id}>
+                <li key={ book.id }>
                   <div className="book">
                     <div className="book-top">
                       <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks && book.imageLinks.thumbnail})` }}></div>
@@ -108,7 +106,7 @@ class SearchBooks extends Component {
                         {this.switchFunction(book)}
                       </div>
                     </div>
-                    <div className="book-title">{book.title}</div>
+                    <div className="book-title">{ book.title }</div>
                     <div className="book-authors">{(book.authors) ? book.authors.join(", ") : ""}</div>
                   </div>
                 </li>

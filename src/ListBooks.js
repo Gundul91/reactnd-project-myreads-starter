@@ -25,6 +25,7 @@ class ListBooks extends Component {
     let targetValue = ev.target.value
     let selectedbook = t.state.books.find(book => book.title === selectedTitle)
     selectedbook.shelf = targetValue
+    shelfList[selectedbook.id] = targetValue
     update(selectedbook, targetValue)
     t.setState(t.state.books)
   }
@@ -62,8 +63,8 @@ class ListBooks extends Component {
                                 </select>
                               </div>
                             </div>
-                            <div className="book-title">{book.title}</div>
-                            <div className="book-authors">{(book.authors) ? book.authors.join(", ") : ""}</div>
+                            <div className = "book-title">{ book.title }</div>
+                            <div className = "book-authors">{(book.authors) ? book.authors.join(", ") : ""}</div>
                           </div>
                         </li>
                       )
@@ -81,7 +82,7 @@ class ListBooks extends Component {
                   {this.state.books.map((book) => {
                     if(book.shelf === "wantToRead") {
                       return (
-                        <li key={book.id}>
+                        <li key={ book.id }>
                           <div className="book">
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -95,7 +96,7 @@ class ListBooks extends Component {
                                 </select>
                               </div>
                             </div>
-                            <div className="book-title">{book.title}</div>
+                            <div className="book-title">{ book.title }</div>
                             <div className="book-authors">{(book.authors) ? book.authors.join(", ") : ""}</div>
                           </div>
                         </li>
@@ -114,7 +115,7 @@ class ListBooks extends Component {
                   {this.state.books.map((book) => {
                     if(book.shelf === "read") {
                       return (
-                        <li key={book.id}>
+                        <li key={ book.id }>
                           <div className="book">
                             <div className="book-top">
                               <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -128,7 +129,7 @@ class ListBooks extends Component {
                                 </select>
                               </div>
                             </div>
-                            <div className="book-title">{book.title}</div>
+                            <div className="book-title">{ book.title }</div>
                             <div className="book-authors">{(book.authors) ? book.authors.join(", ") : ""}</div>
                           </div>
                         </li>

@@ -9,6 +9,7 @@ class ListBooks extends Component {
     books: []
   }
 
+  //Fill the books list and the shelfList
   componentDidMount() {
     getAll().then((list) => {
       this.setState({
@@ -20,6 +21,9 @@ class ListBooks extends Component {
     })
   }
 
+  /* Function for the change event of a shelf list
+   * find the selected book anche update shelfList, the data in the serveer and state.books
+   */
   onChange(ev, t) {
     let selectedTitle = ev.target.parentNode.parentNode.nextSibling.innerHTML
     let targetValue = ev.target.value
@@ -149,7 +153,7 @@ class ListBooks extends Component {
       </div>
     )
   }
- }
+}
 
 export let shelfList = {}
 export default ListBooks

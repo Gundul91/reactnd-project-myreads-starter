@@ -11,6 +11,7 @@ class SearchBooks extends Component {
     books: []
   }
 
+  // Function for the change event of the search bar
   onChangeSearch(ev, t) {
     search(ev.target.value).then((list) => {
       t.setState({
@@ -19,6 +20,9 @@ class SearchBooks extends Component {
     })
   }
 
+  /* Function for the change event of a shelf list
+   * find the selected book anche update shelfList, the data in the serveer and state.books
+   */
   onChange(ev, t) {
     let selectedTitle = ev.target.parentNode.parentNode.nextSibling.innerHTML
     let targetValue = ev.target.value
@@ -29,6 +33,7 @@ class SearchBooks extends Component {
     t.setState(t.state.books)
   }
 
+  // Switch function for the selection of the right shelf list
   switchFunction(book) {
     switch(shelfList[book.id]) {
       case "currentlyReading":
@@ -118,8 +123,5 @@ class SearchBooks extends Component {
     )
   }
 }
-
-// AGGIUNGERE LA FUNZIONE DI RICERCA E AGGIUNTA DEGLI ELEMENTI RECUPERANDO FUNZIONI DA ListBooks
-
 
 export default SearchBooks
